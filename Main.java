@@ -63,6 +63,7 @@ class Main {
             else
                 out("Тип: Папка.");
 
+            
 
         } catch (FileNotFoundException e) {
             out(e.getMessage());
