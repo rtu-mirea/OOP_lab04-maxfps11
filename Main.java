@@ -1,18 +1,22 @@
 import java.io;
 import java.io.File;
+import java.util.List;
+import java.util.Scanner;
 import java.lang.Exception;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
+import Toy;
+
 class Main {
     public static void main(final String[] args) {
-        //Ex.1
+/*         //Ex.1
         final String diskCRootPath = "C:/";
         final String usersFoldrPath = "C:/Users/";
         final String userHomePath = System.getProperty("user.home");
         final String OOP_lab04Path = userHomePath + "/Documents/VSCodeProjects/Java/OOP_lab04-maxfps11/";
 
-        try {
+        try {       
             // Create the MyFile1
             out("Создание MyFile1");
             File f1 = new File(OOP_lab04Path, "MyFile1.txt");
@@ -27,7 +31,6 @@ class Main {
             out("Создание MyFile3");
             File f3 = new File(usersFoldrPath, "MyFile3.txt");
             check(f3.createNewFile());
-        
             //Create third level folder
             out("Создание папки третьего уровня.");
             File f4 = new File(usersFoldrPath, "third");
@@ -62,16 +65,61 @@ class Main {
                 out("Тип: Файл");
             else
                 out("Тип: Папка.");
-
             
+            // Create the folder of third level
+            out("Создание папки в корне приложения.");
+            File f5 = new File(OOP_lab04Path, "third");
+            check(f5.mkdir());
+ 
+            // Pring all file names from app root directory use the list().
+            out("Сформировать массив файлов и вывести используя метод list()");
+            File f6 = new File(OOP_lab04Path);
+            String[] listFileNames = f6.list();
+
+            for (String fileName : listFileNames) {
+                out(fileName);
+            };
+
+            // // Pring all file names from app root directory use the listFiles()
+            out("Сформировать массив файлов и вывести используя метод listFiles() и вывести колличество папок.");
+            File[] listFiles = f6.listFiles();
+
+            int folderCounter = 0;
+            for (File file : listFiles) {
+                if (file.isDirectory())
+                    folderCounter++;
+
+                out(file.toString());
+            }
+            out("Колличесво папок. = " + folderCounter);
+ 
+            out("Удаляем файл MyFile1.txt");
+            check(f1.delete());
+
+            //out("Удаляем файл MyFile2.txt");
+            //check(f2.delete());
+
+            //out("Удаляем файл MyFile3.txt");
+            //check(f3.delete());
+
+            out("Удаляем папку 3-его уровня.");
+            check(f4.delete());
+
+            out("Удаляем папку из корневой папки приложения.");
+            check(f5.delete());
 
         } catch (FileNotFoundException e) {
             out(e.getMessage());
         } catch (IOException e) {
-            out(e.getMessage());
+            out(e.getMessage()); 
         } catch (Exception e) {
             out(e.getMessage());
         }
+ */
+        Toy toy = new Toy(in(), in(), in(), in());
+
+        out(toy.isAppropriateAge(toy));
+
     }
 
     private static void check(boolean res) {
@@ -83,5 +131,25 @@ class Main {
 
     private static <T> void out(T output) {
         System.out.println(output);
+    }
+
+    private static <T> T in() {
+        Scanner inp = new Scanner(System.in);
+        /* 
+        if (var instanceof Boolean) {
+            return inp.nextBoolean();
+        } else if (var instanceof Short) {
+            return inp.next();
+        } else if (var instanceof Integer) {
+            
+        } else if (var instanceof Float) {
+            
+        } else if (var instanceof Double) {
+            
+        } else if (var instanceof String) {
+
+        } */
+        
+        return inp.next();
     }
 }
