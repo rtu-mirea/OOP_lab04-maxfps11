@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.lang.Exception;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.io.FileNotFoundException;
 
 import Toy.*;
@@ -173,7 +174,7 @@ class Main {
         out("Введите название файла для записи: ");
         String fileName = in.next();
 
-        check(fEngine.createFile(fileName));
+        fEngine.createFile(fileName);
 
         Toy t1 = new Toy("First", 100.f, 10, 12);
         Toy t2 = new Toy("Second", 200.f, 10, 12);
@@ -204,13 +205,15 @@ class Main {
         for (Toy toy : toys2) {
             toy.printInfo();
         }
-    }
 
-    private static void check(boolean res) {
-        if (res)
-            out("Успешно.\n");
-        else
-            out("Неуспешно.\n");
+        try {
+            RandomAccessFile rndAFile = new RandomAccessFile(fEngine.createFile("rndAccess"), "rw");
+        } catch (FileNotFoundException e) {
+            out(e.getMessage());
+        }
+
+        
+        
     }
 
     private static <T> void out(T output) {

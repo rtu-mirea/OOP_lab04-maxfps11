@@ -13,18 +13,20 @@ class FileEngine {
 
     FileEngine() {}
 
-    boolean createFile(String fileName) {
+    File createFile(String fileName) {
         System.out.println("Создание файла.");
 
         try {
-        File f = new File(projectDirectory, fileName);
+            File f = new File(projectDirectory, fileName);
 
-        if (!isAlreadyExist(fileName))
-            return f.createNewFile();
+            if (!isAlreadyExist(fileName)) {
+                f.createNewFile();
+                return f;
+            }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        return false;
+        return null;
     }
 
     boolean isAlreadyExist(String fileName) {
