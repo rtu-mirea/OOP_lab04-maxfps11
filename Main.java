@@ -1,12 +1,16 @@
 import java.io;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.lang.Exception;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-import Toy;
+import Toy.*;
+import FileEngine.*;
 
 class Main {
     private static Scanner in = new Scanner(System.in);
@@ -118,7 +122,7 @@ class Main {
             out(e.getMessage());
         }
  */
-        String firm = "None";
+        /*String firm = "None";
         float cost = 0;
         int ageStart = 0, ageFinish = 0;
 
@@ -134,17 +138,79 @@ class Main {
         out("\nКонечный возраст: ");
         ageFinish = in.nextInt();
 
-        Toy toy = new Toy(firm, cost, ageStart, ageFinish);
+        Toy toy1 = new Toy(firm, cost, ageStart, ageFinish);
 
-        out(toy.isAppropriateAge(toy) + "\n");
+        out("\nНатменование фирмы производителя: ");
+        firm = in.next();
 
+        out("\nЦена: ");
+        cost = in.nextFloat();
+
+        out("\nНачальный возраст: ");
+        ageStart = in.nextInt();
+        
+        out("\nКонечный возраст: ");
+        ageFinish = in.nextInt();
+
+        Toy toy2 = new Toy(firm, cost, ageStart, ageFinish);
+
+        out("\nНатменование фирмы производителя: ");
+        firm = in.next();
+
+        out("\nЦена: ");
+        cost = in.nextFloat();
+
+        out("\nНачальный возраст: ");
+        ageStart = in.nextInt();
+        
+        out("\nКонечный возраст: ");
+        ageFinish = in.nextInt();
+
+        Toy toy3 = new Toy(firm, cost, ageStart, ageFinish); */
+
+        FileEngine fEngine = new FileEngine();
+
+        out("Введите название файла для записи: ");
+        String fileName = in.next();
+
+        check(fEngine.createFile(fileName));
+
+        Toy t1 = new Toy("First", 100.f, 10, 12);
+        Toy t2 = new Toy("Second", 200.f, 10, 12);
+        Toy t3 = new Toy("Third", 300.f, 10, 12);
+
+        ArrayList<Toy> toys = new ArrayList<Toy>();
+        toys.add(t1);
+        toys.add(t2);
+        toys.add(t3);
+
+        DataOutputStream dos = new DataOutputStream(fEngine.getDOStream(fileName));
+
+        for (Toy toy : toys) {
+            toy.writeToFile(dos);
+        }
+
+        DataInputStream dis = new DataInputStream(fEngine.getDIStream(fileName));
+
+        ArrayList<Toy> toys2 = new ArrayList<Toy>();
+
+        for (Toy toy : toys) {
+            toy.readFromFile(dis);
+
+            if (toy.isEqFirm("First"))
+                toys2.add(toy);
+        }
+
+        for (Toy toy : toys2) {
+            toy.printInfo();
+        }
     }
 
     private static void check(boolean res) {
         if (res)
-            out("Успешно");
+            out("Успешно.\n");
         else
-            out("Неуспешно");
+            out("Неуспешно.\n");
     }
 
     private static <T> void out(T output) {
