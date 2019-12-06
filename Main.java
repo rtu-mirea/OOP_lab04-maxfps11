@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import Toy;
 
 class Main {
+    private static Scanner in = new Scanner(System.in);
+
     public static void main(final String[] args) {
 /*         //Ex.1
         final String diskCRootPath = "C:/";
@@ -116,9 +118,25 @@ class Main {
             out(e.getMessage());
         }
  */
-        Toy toy = new Toy(in(), in(), in(), in());
+        String firm = "None";
+        float cost = 0;
+        int ageStart = 0, ageFinish = 0;
 
-        out(toy.isAppropriateAge(toy));
+        out("\nНатменование фирмы производителя: ");
+        firm = in.nextLine();
+
+        out("\nЦена: ");
+        cost = in.nextFloat();
+
+        out("\nНачальный возраст: ");
+        ageStart = in.nextInt();
+        
+        out("\nКонечный возраст: ");
+        ageFinish = in.nextInt();
+
+        Toy toy = new Toy(firm, cost, ageStart, ageFinish);
+
+        out(toy.isAppropriateAge(toy) + "\n");
 
     }
 
@@ -130,26 +148,6 @@ class Main {
     }
 
     private static <T> void out(T output) {
-        System.out.println(output);
-    }
-
-    private static <T> T in() {
-        Scanner inp = new Scanner(System.in);
-        /* 
-        if (var instanceof Boolean) {
-            return inp.nextBoolean();
-        } else if (var instanceof Short) {
-            return inp.next();
-        } else if (var instanceof Integer) {
-            
-        } else if (var instanceof Float) {
-            
-        } else if (var instanceof Double) {
-            
-        } else if (var instanceof String) {
-
-        } */
-        
-        return inp.next();
+        System.out.print(output);
     }
 }

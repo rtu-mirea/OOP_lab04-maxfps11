@@ -2,16 +2,21 @@
 class Toy {
     private String m_firm;
 
-    private int m_cost;
+    private float m_cost;
 
     private int m_childAgeStart;
     private int m_childAgeFinish;
 
-    Toy(String firm, int cost, int childAgeStart, int childAgeFinish) {
-        m_firm = firm;
-        m_cost = cost;
-        m_childAgeStart = childAgeStart;
-        m_childAgeFinish = childAgeFinish;
+    Toy(String firm, float cost, int childAgeStart, int childAgeFinish) {
+        this.m_firm = firm;
+
+        if (cost > 0)
+            this.m_cost = cost;
+
+        if (childAgeStart > 0  && childAgeStart < 18 && childAgeFinish >= childAgeStart && childAgeFinish < 18) {
+            this.m_childAgeStart = childAgeStart;
+            this.m_childAgeFinish = childAgeFinish;
+        }
     }
 
     public String getToyInfo(int startAge, int finishAge) {
